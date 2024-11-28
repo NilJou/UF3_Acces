@@ -1,7 +1,5 @@
 package uf3.acces;
 
-import java.util.Scanner;
-
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
 import org.xmldb.api.base.Database;
@@ -11,39 +9,16 @@ import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.modules.XMLResource;
 import org.xmldb.api.modules.XPathQueryService;
 
-public class Exercicis {
+public class Exercici1 {
     static XPathQueryService service;
     public static void main(String[] args) throws Exception{
         connect();
-        System.out.println("-------Menu-------");
-        System.out.println("1. Afegir comanda amb id 4");
-        System.out.println("2. Borrar comanda amb id 2");
-        System.out.println("3. Cambia la cantitat de Mouse, de la comanda 1, a 5");
-        System.out.println("Escull una opció escrivint un número");
-        Scanner scn = new Scanner(System.in);
-        int menu = 0;
-        menu = scn.nextInt();
-        
-        switch (menu) {
-            case 1:
-                addComanda();
-                break;
-            case 2:
-                deleteComanda();
-                break;
-            case 3:
-                changeComanda1();
-                break;
-            case 4:
-                changeComanda2();
-                break;
-            default:
-                System.out.println("Error al introduir el numero");
-                break;
-        }
+        // addComanda();
+        // deleteComanda();
+        // changeComanda1();
+        // changeComanda2();
+        addAtribute();
         comprovacio();
-        // reset();
-        scn.close();
     }
 
     // Creem un metode per a connectar la base de dades, amb un throws Exception per a la gestio d'errors.
@@ -142,9 +117,9 @@ public class Exercicis {
         String updateCity = "update replace /PurchaseOrders/PurchaseOrder[@id=\"3\"]" + 
                             "/ShipTo/City with <City>San Francisco</City>";
         String updareState = "update replace /PurchaseOrders/PurchaseOrder[@id=\"3\"]" + 
-                                "/ShipTo/State with <State>CA</State>";
+                            "/ShipTo/State with <State>CA</State>";
         String updateZip = "update replace /PurchaseOrders/PurchaseOrder[@id=\"3\"]" + 
-                                "/ShipTo/Zip with <Zip>94103</Zip>";
+                            "/ShipTo/Zip with <Zip>94103</Zip>";
         try {
             service.query(updateCity);
             service.query(updareState);
@@ -153,6 +128,26 @@ public class Exercicis {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void addAtribute() throws Exception{
+        
+    }
+
+    public static void calculateCost() {
+
+    }
+
+    public static void list() {
+
+    }
+
+    public static void newDocuemnt() {
+
+    }
+
+    public static void addElements() {
+        
     }
 
     public static void comprovacio() throws Exception{

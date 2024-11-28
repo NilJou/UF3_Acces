@@ -16,6 +16,12 @@
             <artifactId>xmldb-api</artifactId>
             <version>20040731</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-dom</artifactId>
+            <version>1.14</version>
+        </dependency>
     </dependencies>
 
     <properties>
