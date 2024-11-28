@@ -16,8 +16,13 @@ public class Exercici1 {
         // addComanda();
         // deleteComanda();
         // changeComanda1();
-        // changeComanda2();
-        addAtribute();
+        // // changeComanda2();
+        // addAtribute();
+        // addAtribute();
+        calculateCost();
+        // list();
+        // newDocuemnt();
+        // addElements();
         comprovacio();
     }
 
@@ -124,29 +129,43 @@ public class Exercici1 {
             service.query(updateCity);
             service.query(updareState);
             service.query(updateZip);
-            System.out.println("S'ha modificat la quantitat de mouse a 5");
+            System.out.println("S'ha modificat la localitzacio");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static void addAtribute() throws Exception{
-        
+        String addPriority = "update insert attribute Priority {\"High\"} into /PurchaseOrders/PurchaseOrder[@id=\"3\"]";
+        try {
+        service.query(addPriority);
+        System.out.println("S'ha afegit l'atribut Priority");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void calculateCost() {
+    public static void calculateCost() throws Exception{
+        String addPriority =  "for $order in /PurchaseOrders/PurchaseOrder" + " let $total := sum(for $item in $order/Items/Item"
+        + " return number($item/USPrice) * number($item/Quantity))" + " return" + " <Order id=\"{data($order/@id)}\">" 
+        + " <TotalCost>{format-number($total, '0.00')}</TotalCost>" + " </Order>";
+        try {
+        service.query(addPriority);
+        System.out.println("S'ha creat la consulta per a calcular el cost total");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void list() throws Exception{
 
     }
 
-    public static void list() {
+    public static void newDocuemnt() throws Exception{
 
     }
 
-    public static void newDocuemnt() {
-
-    }
-
-    public static void addElements() {
+    public static void addElements() throws Exception{
         
     }
 
