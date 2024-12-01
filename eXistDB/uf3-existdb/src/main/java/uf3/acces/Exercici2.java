@@ -47,79 +47,90 @@ public class Exercici2 {
         queryService = (XPathQueryService) col.getService("XPathQueryService", "1.0");
     }
 
-    public static void showVenta() throws Exception{
 
-        // a. Mostrar tots els purchaseOrder sota l’etiqueta venta
-        String queryA = "//venta/purchaseOrder";
-        ResourceSet resultA = queryService.query(queryA);
-        ResourceIterator iteratorA = resultA.getIterator();
-        System.out.println("PurchaseOrders sota l'etiqueta venta:");
-        while (iteratorA.hasMoreResources()) {
-            Resource r = iteratorA.nextResource();
+    public static void showVenta() throws Exception{
+        // XPath per a seleccionar les ventes
+        String ventas = "//venta/purchaseOrder";
+        // Executa el XPath
+        ResourceSet result = queryService.query(ventas);
+        ResourceIterator iterator = result.getIterator();
+
+        // Imprimeix els resultats
+        System.out.println("Ventas:");
+        while (iterator.hasMoreResources()) {
+            Resource r = iterator.nextResource();
             System.out.println(r.getContent());
         }
     }
 
 
     public static void showSeattle() throws Exception{
-        // b. Mostrar tots els purchaseOrder de Seattle
-        String queryB = "//purchaseOrder[shipTo/city='Seattle']";
-        ResourceSet resultB = queryService.query(queryB);
-        ResourceIterator iteratorB = resultB.getIterator();
+        // XPath per a seleccionar les ordres amb ciutat Seattle
+        String ciutat = "//purchaseOrder[shipTo/city='Seattle']";
+        ResourceSet result = queryService.query(ciutat);
+        ResourceIterator iterator = result.getIterator();
+
+        // Imprimeix els resultats
         System.out.println("\nPurchaseOrders de Seattle:");
-        while (iteratorB.hasMoreResources()) {
-            Resource r = iteratorB.nextResource();
+        while (iterator.hasMoreResources()) {
+            Resource r = iterator.nextResource();
             System.out.println(r.getContent());
         }
     }
 
     public static void showUSP50() throws Exception{
-        // c. Mostrar tots els purchaseOrder amb USPrice superior a 50
-        String queryC = "//purchaseOrder[USPrice > 50]";
-        ResourceSet resultC = queryService.query(queryC);
-        ResourceIterator iteratorC = resultC.getIterator();
+        // XPath per a seleccionar les ordres amb preu mes alt de 50
+        String preu = "//purchaseOrder[USPrice > 50]";
+        ResourceSet result = queryService.query(preu);
+        ResourceIterator iterator = result.getIterator();
+
+        // Imprimeix els resultats
         System.out.println("\nPurchaseOrders amb USPrice superior a 50:");
-        while (iteratorC.hasMoreResources()) {
-            Resource r = iteratorC.nextResource();
+        while (iterator.hasMoreResources()) {
+            Resource r = iterator.nextResource();
             System.out.println(r.getContent());
         }
     }
 
     public static void show2Articles() throws Exception{
-        // d. Mostrar tots els purchaseOrder amb més de dos articles
-        String queryD = "//purchaseOrder[count(item) > 2]";
-        ResourceSet resultD = queryService.query(queryD);
-        ResourceIterator iteratorD = resultD.getIterator();
+        // Mostre les ordres amb mes de dos items
+        String items = "//purchaseOrder[count(item) > 2]";
+        ResourceSet result = queryService.query(items);
+        ResourceIterator iterator = result.getIterator();
+
+        // Imprimeix els resultats
         System.out.println("\nPurchaseOrders amb més de dos articles:");
-        while (iteratorD.hasMoreResources()) {
-            Resource r = iteratorD.nextResource();
+        while (iterator.hasMoreResources()) {
+            Resource r = iterator.nextResource();
             System.out.println(r.getContent());
         }
     }
 
     public static void renameNode() throws Exception{
-        // e. Renombrar el node PurchaseOrder a Ventas
-        String queryE = "for $po in //purchaseOrder return rename node $po as venta";
-        queryService.query(queryE); // No necessitem imprimir res
+        // Renombrar el node PurchaseOrder a Ventas
+        String renombrar = "for $po in //purchaseOrder return rename node $po as venta";
+        queryService.query(renombrar);
     }
 
     public static void modifyItem33() throws Exception{
-        // f. Modificar la quantity del primer Venta, el primer ítem a 33
-        String queryF = "let $firstVenta := //venta[1]/item[1] return replace value of node $firstVenta/quantity with 33";
-        queryService.query(queryF); // No necessitem imprimir res
+        // Modificar la quantitat del primer Venta, el primer ítem a 33
+        String quantitat = "let $firstVenta := //venta[1]/item[1] return replace value of node $firstVenta/quantity with 33";
+        queryService.query(quantitat);
     }
 
     public static void deleteThirdPO() throws Exception{
-        // g. Eliminar el tercer PurchaseOrder
-        String queryG = "let $thirdPO := //purchaseOrder[3] return delete $thirdPO";
-        queryService.query(queryG); // No necessitem imprimir res
+        // Eliminar el tercer PurchaseOrder
+        String eliminar = "let $thirdPO := //purchaseOrder[3] return delete $thirdPO";
+        queryService.query(eliminar);
     }
 
     public static void countPO() throws Exception{
-         // h. Comptar tots els PurchaseOrder
-        String queryH = "count(//purchaseOrder)";
-        ResourceSet resultH = queryService.query(queryH);
-        int countH = Integer.parseInt(resultH.getIterator().nextResource().getContent().toString());
-        System.out.println("\nTotal PurchaseOrders: " + countH);
+         // Compta tots els PurchaseOrder
+        String comptar = "count(//purchaseOrder)";
+        ResourceSet result = queryService.query(comptar);
+        int count = Integer.parseInt(result.getIterator().nextResource().getContent().toString());
+
+        // Imprimeix els resultats
+        System.out.println("\nTotal PurchaseOrders: " + count);
     }    
 }
