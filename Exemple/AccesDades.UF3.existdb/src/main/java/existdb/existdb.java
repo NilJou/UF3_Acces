@@ -49,19 +49,18 @@ public class existdb {
         
        
         //Executa la consulta XPath sobre el rec   
-        /*
+
         // Afegim una nova entrada d'alumne amb el nom David i nota 10
         String addStudentQuery = "update insert <alumne id='3'><nom>David</nom><nota>10</nota></alumne> into /classe";
         service.query(addStudentQuery);
         System.out.println("S'ha afegit un nou alumne amb el nom David i nota 10.");
-	
-        
+	        
      	// Esborrar l'alumne amb nom David i nota 10
         String deleteStudentQuery = "update delete /classe/alumne[nom='David' and nota='10']";
         service.query(deleteStudentQuery);
         System.out.println("S'ha esborrat l'alumne David amb nota 10.");
-       */
-     // Modificar la nota de l'alumne Pere a 7
+
+        // Modificar la nota de l'alumne Pere a 7
         String updateStudentNoteQuery = "update replace /classe/alumne[nom='Pere']/nota with <nota>7</nota>";
         service.query(updateStudentNoteQuery);
         System.out.println("S'ha modificat la nota de Pere a 7.");

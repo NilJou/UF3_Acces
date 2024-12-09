@@ -14,6 +14,14 @@ public class Exercici2 {
     static XPathQueryService queryService;
     public static void main(String[] args) throws Exception{
         connect();
+        showVenta();
+        showSeattle();
+        showUSP50();
+        show2Articles();
+        renameNode();
+        modifyItem33();
+        deleteThirdPO();
+        countPO();
         col.close();
     }
 
